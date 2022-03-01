@@ -1,14 +1,15 @@
 CURRENT_DIR=$(PWD)
+IMAGE_NAME=sineverba/testdockersqlite3
+CONTAINER_NAME=testdockersqlite3
 
 build:
-	docker build --tag sineverba/testdockersqlite3 .
+	docker build --tag $(IMAGE_NAME) .
 
 test:
-	echo ${CURRENT_DIR}
-	docker run --rm -it sineverba/testdockersqlite3 sqlite3 --version | grep "3.36.0"
+	docker run --name $(CONTAINER_NAME) --rm -it $(IMAGE_NAME) sqlite3 --version | grep "3.36.0"
 
 spin:
-	docker run --rm -it -v ${CURRENT_DIR}/database:/database sineverba/testdockersqlite3
+	docker run --name $(CONTAINER_NAME) --rm -it -v ${CURRENT_DIR}/database:/database $(IMAGE_NAME)
 
 destroy:
-	docker image rm sineverba/testdockersqlite3
+	docker image rm $(IMAGE_NAME)
