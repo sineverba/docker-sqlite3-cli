@@ -1,6 +1,6 @@
 version: v1.0
 
-name: Build and test Pipeline
+name: Build and test
 agent:
   machine:
     type: e1-standard-2
@@ -8,6 +8,9 @@ agent:
 
 global_job_config:
 
+  secrets:
+    - name: ACCESS_TOKENS
+    
   prologue:
     commands:
       - echo $DOCKER_TOKEN | docker login --username "$DOCKER_USERNAME" --password-stdin
@@ -29,8 +32,6 @@ blocks:
             - checkout
             - docker build --tag $DOCKER_USERNAME/$DOCKER_IMAGE .
             - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE sqlite3 --version | grep "3.36.0"
-      secrets:
-        - name: DOCKER_TOKEN
 
 promotions:
   - name: Deploy
