@@ -1,15 +1,14 @@
-CURRENT_DIR=$(PWD)
-IMAGE_NAME=sineverba/testdockersqlite3
-CONTAINER_NAME=testdockersqlite3
+IMAGE_NAME=sineverba/sqlite3-cli
+CONTAINER_NAME=sqlite3-cli
+VERSION=1.1.0-dev
+TOPDIR=$(PWD)
 
 build:
-	docker build --tag $(IMAGE_NAME) .
+	docker build --tag $(IMAGE_NAME):$(VERSION) .
 
 test:
-	docker run --name $(CONTAINER_NAME) --rm -it $(IMAGE_NAME) sqlite3 --version | grep "3.36.0"
-
-spin:
-	docker run --name $(CONTAINER_NAME) --rm -it -v ${CURRENT_DIR}/database:/database $(IMAGE_NAME)
+	docker run --rm -it --entrypoint cat --name $(CONTAINER_NAME) $(IMAGE_NAME):$(VERSION) /etc/os-release | grep "Alpine Linux v3.17"
+	docker run --name $(CONTAINER_NAME) --rm -it $(IMAGE_NAME):$(VERSION) sqlite3 --version | grep "3.40.1"
 
 destroy:
-	docker image rm $(IMAGE_NAME)
+	docker image rm $(IMAGE_NAME):$(VERSION)
