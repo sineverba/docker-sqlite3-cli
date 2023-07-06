@@ -20,6 +20,6 @@ Docker Sqlite3 CLI
 
 | Github / Docker Image tag | Sqlite3 version | Platform |
 | ------------------------- | ----------- | -------- |
-| latest | 3.40.1 | linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 |
+| latest | 3.41.2 | linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 |
 | 1.1.0 | 3.40.1 | linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 |
 | 1.0.0 | 3.36.0 | linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 |
