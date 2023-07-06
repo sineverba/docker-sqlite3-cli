@@ -10,16 +10,17 @@ Docker Sqlite3 CLI
 
 ## Usage
 
-`$ docker run --rm -it sineverba/sqlite3-cli:1.1.0 sqlite3 [COMMAND]`
+`$ docker run --rm -it sineverba/sqlite3-cli:1.2.0 sqlite3 [COMMAND]`
 
 ## To enter inside container:
 
-`docker run --rm -it -v ${PWD}/database:/database sineverba/sqlite3-cli:1.1.0`
+`docker run --rm -it -v ${PWD}/database:/database sineverba/sqlite3-cli:1.2.0`
 
 ## Github / image tags and versions
 
 | Github / Docker Image tag | Sqlite3 version | Platform |
 | ------------------------- | ----------- | -------- |
 | latest | 3.41.2 | linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 |
+| 1.2.0 | 3.41.2 | linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 |
 | 1.1.0 | 3.40.1 | linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 |
 | 1.0.0 | 3.36.0 | linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 |

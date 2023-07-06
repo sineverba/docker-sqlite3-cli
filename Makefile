@@ -1,6 +1,6 @@
 IMAGE_NAME=sineverba/sqlite3-cli
 CONTAINER_NAME=sqlite3-cli
-VERSION=1.1.0-dev
+VERSION=1.2.0-dev
 
 build:
 	docker build --tag $(IMAGE_NAME):$(VERSION) .
