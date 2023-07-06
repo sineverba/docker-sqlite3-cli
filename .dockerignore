@@ -1,1 +1,5 @@
 database/
+.semaphore/
+*.md
+LICENSE
+Makefile
