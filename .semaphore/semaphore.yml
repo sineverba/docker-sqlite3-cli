@@ -20,6 +20,10 @@ global_job_config:
       value: sineverba
     - name: DOCKER_IMAGE
       value: sqlite3-cli
+    - name: ALPINE_VERSION
+      value: 3.18.4
+    - name: SQLITE_VERSION
+      value: 3.41.2-r2
 
 blocks:
   - name: 'Build and test'
@@ -30,7 +34,11 @@ blocks:
         - name: 'Build and test'
           commands:
             - checkout
-            - docker build --tag $DOCKER_USERNAME/$DOCKER_IMAGE .
+            - >-
+              docker build 
+              --build-arg ALPINE_VERSION=$ALPINE_VERSION
+		          --build-arg SQLITE_VERSION=$SQLITE_VERSION
+              --tag $DOCKER_USERNAME/$DOCKER_IMAGE "."
             - docker run --rm -it --entrypoint cat $DOCKER_USERNAME/$DOCKER_IMAGE /etc/os-release | grep "Alpine Linux v3.18"
             - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE sqlite3 --version | grep "3.41.2"
 
