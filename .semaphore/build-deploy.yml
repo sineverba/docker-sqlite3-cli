@@ -23,9 +23,13 @@ global_job_config:
     - name: DOCKER_IMAGE
       value: sqlite3-cli
     - name: BUILDX_VERSION
-      value: 0.11.0
+      value: 0.12.1
     - name: BINFMT_VERSION
       value: qemu-v7.0.0-28
+    - name: ALPINE_VERSION
+      value: 3.19.0
+    - name: SQLITE_VERSION
+      value: 3.44.2-r0
 
 blocks:
   - name: 'Build and deploy'
@@ -47,8 +51,10 @@ blocks:
             - docker buildx create --name multiarch --driver docker-container --use
             - docker buildx inspect --bootstrap --builder multiarch
             - >-
-              docker buildx build 
+              docker buildx build
               --platform linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 
+              --build-arg ALPINE_VERSION=$ALPINE_VERSION
+		          --build-arg SQLITE_VERSION=$SQLITE_VERSION
               --tag $DOCKER_USERNAME/$DOCKER_IMAGE:$SEMAPHORE_GIT_TAG_NAME 
               --tag $DOCKER_USERNAME/$DOCKER_IMAGE:latest 
               --push "."

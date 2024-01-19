@@ -1,7 +1,11 @@
-FROM alpine:3.18.2
-
-RUN apk update && apk upgrade
-
-ENV CLI_VERSION 3.41.2-r2
-
-RUN apk add sqlite=${CLI_VERSION}
+# Define base env
+ARG ALPINE_VERSION=3.19.0
+# Get Image
+FROM alpine:${ALPINE_VERSION}
+# Update
+RUN apk update && \
+    apk upgrade --available --no-cache && \
+    rm -rf /var/cache/apk/*
+# Install Sqlite
+ARG SQLITE_VERSION=3.44.2-r0
+RUN apk add sqlite=${SQLITE_VERSION}
